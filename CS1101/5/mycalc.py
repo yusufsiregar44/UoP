@@ -37,4 +37,21 @@ def calc(int1, int2, operator):
     else:
         return 'integers are invalid'
 
-print(calc(1, 2, '/'))
+def askAgain():
+    response = input("Would you like another operation? (Y/N)")
+    if response == 'Y':
+        inputPrompt()
+    elif response == 'N':
+        print('See You later!')
+    else:
+        print('I don\'t get what you mean')
+        askAgain()
+
+def inputPrompt():
+    inputInt1 = float(input("Input first number... "))
+    inputInt2 = float(input("Input second number... "))
+    inputOperator = input("Input desired mathematical operation... ")
+    print(calc(inputInt1, inputInt2, inputOperator))
+    askAgain()
+
+inputPrompt()
