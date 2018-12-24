@@ -37,6 +37,7 @@ def calc(int1, int2, operator):
     else:
         return 'integers are invalid'
 
+# function to be called at the end of calculation, asks user to run cacluatio again or end program
 def askAgain():
     response = input("Would you like another operation? (Y/N)")
     if response == 'Y':
@@ -47,6 +48,7 @@ def askAgain():
         print('I don\'t get what you mean')
         askAgain()
 
+# function to promt user input and execute calc funtion using user inputs
 def inputPrompt():
     inputInt1 = float(input("Input first number... "))
     inputInt2 = float(input("Input second number... "))
@@ -54,4 +56,5 @@ def inputPrompt():
     print(calc(inputInt1, inputInt2, inputOperator))
     askAgain()
 
+# initial execution of program
 inputPrompt()
