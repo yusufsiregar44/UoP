@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - RollTheDice",
+      "request": "launch",
+      "mainClass": "RollTheDice",
+      "projectName": "UoP_1f8376a2"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - GravityCalculator",
+      "request": "launch",
+      "mainClass": "GravityCalculator",
+      "projectName": "UoP_1f8376a2"
+    }
+  ]
+}
