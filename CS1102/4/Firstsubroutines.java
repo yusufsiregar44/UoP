@@ -1,3 +1,4 @@
+import textio.TextIO;
 public class Firstsubroutines {
 
   /**
@@ -8,18 +9,20 @@ public class Firstsubroutines {
     String reversedUserInput; // variable containining reversed user input
     String strippedUserInput; // variable containining stripped user input
 
-    userInput =  args[0];
+    TextIO.put("Please enter a word or a phrase: ");
+
+    userInput = TextIO.getln();
 
     strippedUserInput = stripper(userInput);
-    System.out.println("stripped:\t" + strippedUserInput);
+    TextIO.putln("stripped:\t" + strippedUserInput);
 
     reversedUserInput = reverser(strippedUserInput);
-    System.out.println("reversed:\t" + reversedUserInput);
+    TextIO.putln("reversed:\t" + reversedUserInput);
 
     if (reversedUserInput.equals(strippedUserInput)) {
-      System.out.println("This is INDEED a palindrome");
+      TextIO.putln("This is INDEED a palindrome");
     } else {
-      System.out.println("This is NOT a palindrome");
+      TextIO.putln("This is NOT a palindrome");
     }
   }
 
