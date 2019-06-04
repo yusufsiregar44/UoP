@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - Matrix",
+      "request": "launch",
+      "mainClass": "Matrix",
+      "projectName": "UoP_1f8376a2"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - VariablesAndPrimitiveTypes",
       "request": "launch",
       "mainClass": "VariablesAndPrimitiveTypes",

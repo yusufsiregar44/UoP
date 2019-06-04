@@ -5,6 +5,25 @@ public abstract class Employee {
   private String name;
   private Vehicle vehicle;
 
+  public Employee() {
+    // default constructor
+
+    System.out.println("... inside Employee default constructor");
+    empId = 0;
+    name = "";
+  }
+
+  public Employee(int pEmpId, String pName, Vehicle pV) {
+    // non-default constructor
+
+    System.out.println("... inside Employee non-default constructor");
+    empId = pEmpId;
+    name = pName;
+    this.vehicle = pV;
+  }
+
+  public abstract double calculatePay();
+
   public int getEmpId() {
     return empId;
   }
