@@ -9,30 +9,19 @@ public class Matrix {
       System.out.println("This is not a square matrix");
     } else {
   
-      int[][] m = {
+      int[][] m = new int[][] {
         {10, 12, 11},
         {9, 8, 31},
         {2, 16, 24}
       };
-    
-      int numberOfColumnsToBeCalculated = NUMBER_OF_COLUMNS.intValue();
-      int numberOfRowsToBeCalculated = NUMBER_OF_ROWS.intValue();
-      int diagonalTotal = 0;
 
-      int currentDiagonalRow = numberOfRowsToBeCalculated - 1;
-      int currentDiagonalColumn = 0;
-      System.out.println(currentDiagonalRow);
+      int totalDiagonal = 0;
       for (int i = 0; i < m.length; i ++) {
-        System.out.println(currentDiagonalRow);
-        System.out.println(currentDiagonalColumn);
-        // System.out.println(m[currentDiagonalRow][currentDiagonalColumn]);
-
-        // diagonalTotal += m[currentDiagonalRow][currentDiagonalColumn];
-        currentDiagonalRow = numberOfRowsToBeCalculated - 1;
-        // currentDiagonalColumn = numberOfColumnsToBeCalculated + 1;
+        int columnIndex = m.length - (i + 1);
+        totalDiagonal += m[i][columnIndex];
       }
   
-      System.out.println(diagonalTotal);
+      System.out.println(totalDiagonal);
     }
   }
 

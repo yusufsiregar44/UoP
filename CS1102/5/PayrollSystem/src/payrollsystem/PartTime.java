@@ -1,6 +1,6 @@
 package payrollsystem;
 
-public abstract class PartTime extends Employee {
+public class PartTime extends Employee {
   private double rate;
   private double hoursWorked;
  
