@@ -73,3 +73,48 @@ CREATE TABLE tblOrderDetails (
   CONSTRAINT Valid_Qty Check (Quantity > 0)
 );
 
+-- Create tblEmployee and tblCategory relations to maintain referential integrity
+
+CREATE TABLE tblEmployee (
+    EmployeeID int PRIMARY KEY NOT NULL,
+    Name varchar(50) NOT NULL
+);
+
+CREATE TABLE tblCategory (
+    CategoryID int PRIMARY KEY NOT NULL,
+    Name varchar(50) NOT NULL
+);
+
+-- Alter tblProducts and tblOrders to create foreign key
+
+ALTER TABLE tblOrders ADD FOREIGN KEY (EmployeeID) REFERENCES tblEmployee;
+
+ALTER TABLE tblProducts ADD FOREIGN KEY (CategoryID) REFERENCES tblCategory;
+
+-- Create tblShippingAddresses to achieve BCNF third normal form
+
+CREATE TABLE tblShippingAddresses(
+    ShippingAddressID int NOT NULL,
+    CustomerID varchar(5) NOT NULL,
+    ShipName varchar(40) NOT NULL,
+    ShipCity varchar(60) NOT NULL,
+    ShipRegion varchar(60) NOT NULL,
+    ShipPostalCode varchar(10) NOT NULL,
+    ShipCountry varchar(15) NOT NULL,
+    PRIMARY KEY (ShippingAddressID, CustomerID)
+);
+
+-- remove shipping address attributes from tblOrders and add ShippingAddresssID attribute
+
+ALTER TABLE tblOrders
+    DROP COLUMN shipname,
+    DROP COLUMN shipcity,
+    DROP COLUMN shipregion,
+    DROP COLUMN shippostalcode,
+    DROP COLUMN shipcountry;
+
+ALTER TABLE tblOrders
+    ADD COLUMN ShippingAddressID int NULL,
+    ADD FOREIGN KEY (ShippingAddressID, CustomerID) REFERENCES tblShippingAddresses;
+
+
