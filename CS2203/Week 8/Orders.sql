@@ -118,3 +118,74 @@ ALTER TABLE tblOrders
     ADD FOREIGN KEY (ShippingAddressID, CustomerID) REFERENCES tblShippingAddresses;
 
 
+-- revert back to original database schema
+
+-- QUESTION ONE
+-- Get all the orders placed by a specific customer. CustomerID for this customer is MAGAA
+
+SELECT * FROM tblOrders WHERE CustomerID = 'MAGAA';
+
+-- QUESTION TWO
+-- Show customers whose ContactTitle is not Sales Associate.
+-- Display CustomerID, CompanyName, Contact Name, and ContactTitle
+
+SELECT CustomerID, CompanyName, ContactName, ContactTitle FROM tblCustomers WHERE ContactTitle != 'Sales Associate';
+
+-- QUESTION THREE
+-- Show customers who bought products where the EnglishName includes the string “chocolate”.
+-- Display CustomerID, CompanyName, ProductID, ProductName, and EnglishName
+
+SELECT t.CustomerID, t.CompanyName, tP.ProductID, tP.ProductName, tP.EnglishName FROM tblCustomers t
+    JOIN tblOrders O on t.CustomerID = O.CustomerID
+    JOIN tblOrderDetails tOD on O.OrderID = tOD.OrderID
+    JOIN tblProducts tP on tOD.ProductID = tP.ProductID
+    WHERE EnglishName LIKE '%chocolate%';
+
+-- QUESTION FOUR
+-- Show products which were bought by customers from Italy or USA.
+-- Display CustomerID, CompanyName, ShipCountry, ProductID, ProductName, and EnglishName
+
+SELECT t.CustomerID, t.CompanyName, O.shipcountry, tP.ProductID, tP.ProductName, tP.EnglishName FROM tblCustomers t
+    JOIN tblOrders O on t.CustomerID = O.CustomerID
+    JOIN tblOrderDetails tOD on O.OrderID = tOD.OrderID
+    JOIN tblProducts tP on tOD.ProductID = tP.ProductID
+    WHERE t.Country = 'ITALY' OR t.Country = 'USA';
+
+-- QUESTION FIVE
+-- Show total price of each product in each order. Note that there is not a column named as total price.
+-- You should calculate it and create a column named as TotalPrice.
+-- Display OrderID, ProductID, ProductName, UnitPrice, Quantity, Discount, and TotalPrice
+
+SELECT tO2.OrderID,
+       tOD.ProductID,
+       tP.ProductName,
+       tOD.UnitPrice,
+       tOD.Quantity,
+       tOD.Discount,
+       ((tOD.UnitPrice * tOD.Quantity) * (1 - tOD.Discount)) TotalPrice
+FROM tblOrders tO2
+    JOIN tblOrderDetails tOD on tO2.OrderID = tOD.OrderID
+    JOIN tblProducts tP on tOD.ProductID = tP.ProductID;
+
+-- QUESTION SIX
+-- Show how many products there are in each category
+-- and show the results in ascending order by the total number of products.
+-- Display CategoryName, and TotalProducts
+
+SELECT CategoryID AS CategoryName, count(ProductID) AS TotalProducts FROM tblProducts tP
+GROUP BY CategoryID
+ORDER BY TotalProducts;
+
+-- QUESTION SEVEN
+-- Show the total number of customers in each City. Display Country, City, TotalCustomers
+
+SELECT Country, City, count(CustomerID) AS TotalCustomers FROM tblCustomers tC
+GROUP BY City, Country;
+
+-- QUESTION EIGHT
+-- Show the orders which were shipped late than the actual required date.
+-- Display OrderID, OrderDate, RequiredDate, and ShippedDate
+
+SELECT OrderID, OrderDate, RequiredDate, ShippedDate FROM tblOrders
+WHERE ShippedDate > RequiredDate;
+
