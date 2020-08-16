@@ -1,4 +1,4 @@
-package com.week_1.com.week_1.exceptions;
+package com.week_1.exceptions;
 
 /**
  * @author Yusuf
